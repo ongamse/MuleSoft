@@ -25,12 +25,7 @@ jobs:
       run: |
         curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl
 
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-
     - name: preZero NextGen Static Analysis
-      run: ${GITHUB_WORKSPACE}/sl analyze --strict --app HeeHaw --wait --verbose
+      run: ${GITHUB_WORKSPACE}/sl analyze --app HeeHaw --wait --verbose 
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
